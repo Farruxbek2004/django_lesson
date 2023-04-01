@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <b>Text:</b> {{ questions.text }}
+    <br>
+    <b>Publication date:</b> {{ questions.pub_date }}
+    <ul>
+        {% for choice in choices %}
+            <li>
+                {{ choice.text }}
+            </li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <a href="{% url 'questions_list' %}">🔙 Orqaga</a>
+{% endblock %}
