@@ -1,10 +1,9 @@
 from django import forms
-from django.urls import reverse_lazy
 
 from polls.models import Question
 
 
-class QuestionFrom(forms.ModelForm):
+class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['text', 'pub_date']
