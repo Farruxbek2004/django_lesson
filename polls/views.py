@@ -59,8 +59,8 @@ def question_vote(request, question_id):
             messages.add_message(request, SUCCESS, 'Your choice is correct.')
             return HttpResponse('Your choice is correct')
         else:
-            messages.add_message(request, ERROR, 'Your choice in incorrent.')
-            return HttpResponse('Your choice in incorrent.')
+            messages.add_message(request, ERROR, 'Your choice in incorrect.')
+            return HttpResponse('Your choice in incorrect.')
 
 
 def question_add(request):
@@ -70,3 +70,9 @@ def question_add(request):
             form.save()
             return redirect('polls:questions_list')
     return render(request, 'polls/add_question.html', {'form': form})
+
+
+# def question_delete(request):
+#     form = QuestionDeleteView(request.POST)
+#     if request.method == 'POST':
+
