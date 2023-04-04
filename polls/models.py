@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Question(models.Model):
@@ -8,6 +9,9 @@ class Question(models.Model):
     def __str__(self):
         return self.text
 
+    # def get_absolute_url(self):
+    #     return reverse('polls:question_detail', args=[str(self.id)])
+    #
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')

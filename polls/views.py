@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.messages import SUCCESS, ERROR
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
 
-from polls.forms import QuestionForm
+from polls.forms import QuestionForm, ChoiceForm
 from polls.models import Question, Choice
 
 
@@ -50,13 +52,25 @@ def question_vote(request, question_id):
     # return redirect("polls:questions_list")
 
 
-def question_add(request):
+def choice_new(request):
+    form = ChoiceForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("polls:questions_list")
+    return render(request, 'choices_new.html', {"form": form})
+
+
+def question_new(request):
     form = QuestionForm(request.POST)
     if request.method == "POST":
         if form.is_valid():
             form.save()
             return redirect("polls:questions_list")
-    return render(request, 'polls/add_question.html', {"form": form})
-# def question_delete(request):
-#     form = QuestionDeleteView(request.POST)
-#     if request.method == 'POST':
+    return render(request, 'question_new.html', {"form": form})
+
+
+class BlogDeleteView(DeleteView):
+    model = Question
+    template_name = 'delete.html'
+    success_url = reverse_lazy('polls:homepage')

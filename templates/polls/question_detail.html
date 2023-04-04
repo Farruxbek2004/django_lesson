@@ -32,4 +32,9 @@
         {% endif %}
     </div>
 
-{% endblock %}
+
+    <div class="post-entry">
+    </div>
+    <a href="{% url 'polls:question_delete' question.id %}">Delete</a>
+{% endblock content %}
+

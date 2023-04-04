@@ -1,6 +1,11 @@
 from django import forms
+from polls.models import Question, Choice
 
-from polls.models import Question
+
+class ChoiceForm(forms.ModelForm):
+    class Meta:
+        model = Choice
+        fields = ['question', 'text', 'votes', 'is_true']
 
 
 class QuestionForm(forms.ModelForm):
@@ -8,9 +13,3 @@ class QuestionForm(forms.ModelForm):
         model = Question
         fields = ['text', 'pub_date']
 
-
-# class QuestionDeleteView(forms.ModelForm):
-#     class Meta:
-#         model = Question
-#         template_name = 'delete.html'
-#         success_url = reverse_lazy('home')
