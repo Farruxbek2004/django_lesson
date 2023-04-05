@@ -72,5 +72,5 @@ def question_new(request):
 
 class BlogDeleteView(DeleteView):
     model = Question
-    template_name = 'delete.html'
+    template_name = 'question_delete.html'
     success_url = reverse_lazy('polls:homepage')
